@@ -1,0 +1,79 @@
+Team: Team-21
+Members: 許軒 (r05922020), 鄭宇軒 (b01902101), 陳哲斌 (auditor)
+
+Required Packages
+
+    We use Redis database to store all the data structures of our order book.
+    The following commands show how we install Redis (in Ubuntu 16.04):
+
+        $ wget http://download.redis.io/releases/redis-4.0.2.tar.gz
+        $ tar -xf redis-4.0.2.tar.gz
+        $ cd redis-4.0.2/
+        $ make
+        $ sudo make install
+        $ sudo utils/install_server.sh
+
+Required Libraries
+
+    Since we program in C, we need Hiredis, which is a minimalistic C client
+    library for the Redis database, so that we can issue commands to the Redis
+    server in our C program. After Redis is built successfully, we run the
+    following commands to install Hiredis headers and shared libraries:
+
+        $ cd redis-4.0.2/deps/hiredis/
+        $ sudo make install
+        $ sudo ldconfig
+
+    Also, we need JSON-C to perform I/O in JSON format. We run the following
+    commands to install JSON-C headers and shared libraries:
+
+        $ sudo apt install autoconf automake libtool # prerequisites
+        $ wget https://github.com/json-c/json-c/archive/json-c-0.13-20171207.zip
+        $ unzip json-c-0.13-20171207.zip
+        $ cd json-c-json-c-0.13-20171207
+        $ ./configure
+        $ make
+        $ make check
+        $ sudo make install
+        $ sudo ldconfig
+
+Compilation and Execution
+
+    All the source code is in book.c. We already provide a simple Makefile to
+    build it:
+
+        $ make
+
+    The executable can be run in the following two ways:
+
+        $ ./book [COMMAND]
+        $ ./book
+        book> [COMMAND 1]
+        book> [COMMAND 2]
+        .
+        .
+        .
+
+    To show the usage of all commands, run:
+
+        $ ./book help
+
+    To test the correctness, we also provide two sample input files, bids.txt
+    and asks.txt, which contain lots of bid orders and ask orders copied from
+    Bitfinex. We then run the following commands to check the result:
+
+        $ ./book < bids.txt
+        $ ./book < asks.txt
+        $ ./book list | less
+        $ ./book ask 7902.4 7
+        $ ./book list | less
+        $ ./book match
+        $ ./book list | less
+
+    For more implementation details, please see the comments in book.c.
+
+Contribution
+
+    許軒: Set up the above environment, implement the C program.
+    鄭宇軒: Survey C client libraries for Redis.
+    陳哲斌: Provide necessary financial knowledge.
