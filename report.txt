@@ -65,7 +65,7 @@ Compilation and Execution
         $ ./book < bids.txt
         $ ./book < asks.txt
         $ ./book list | less
-        $ ./book ask 7902.4 7
+        $ ./book ask allen 7902.4 7
         $ ./book list | less
         $ ./book match
         $ ./book list | less

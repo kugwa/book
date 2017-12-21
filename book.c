@@ -6,12 +6,16 @@
  *     a member is the same as the member itself. In this way, Redis will sort
  *     the prices for us automatically.
  *
- * bid_orders@[PRICE] (list):
- *     bid_orders@[PRICE] exists if and only if PRICE is a member of bid_prices.
+ * bid_amounts@[PRICE] (list):
+ *     bid_amounts@[PRICE] exists if and only if PRICE is a member of bid_prices.
  *     It is a FIFO queue of bid orders at PRICE and its elements represent bid
  *     amounts.
  *
- * ask_prices and ask_orders@[PRICE]:
+ * bid_users@[PRICE] (list):
+ *     Similar to bid_amounts@[PRICE] except the elements of bid_users@[PRICE]
+ *     represent bid users.
+ *
+ * ask_prices, ask_amounts@[PRICE], and ask_users@[PRICE]:
  *     The ask version of the above data structures.
  */
 
@@ -55,12 +59,15 @@ static inline double get_reply_double(redisReply *reply)
  *
  * cmd: "bid" or "ask"
  */
-static void bid_ask(const char *cmd, double price, double amount)
+static void bid_ask(const char *cmd, const char *user,
+                    double price, double amount)
 {
     redisReply *reply;
     reply = redisCommand(context, "ZADD %s_prices %f %f", cmd, price, price);
     freeReplyObject(reply);
-    reply = redisCommand(context, "rpush %s_orders@%f %f", cmd, price, amount);
+    reply = redisCommand(context, "rpush %s_users@%f %s", cmd, price, user);
+    freeReplyObject(reply);
+    reply = redisCommand(context, "rpush %s_amounts@%f %f", cmd, price, amount);
     freeReplyObject(reply);
 }
 
@@ -76,7 +83,11 @@ static void clear()
     for (which = 0; which < 2; which++) {
         prices = redisCommand(context, "ZRANGE %s_prices 0 -1", bid_ask[which]);
         for (i = 0; i < prices->elements; i++) {
-            reply = redisCommand(context, "DEL %s_orders@%s",
+            reply = redisCommand(context, "DEL %s_users@%s",
+                                 bid_ask[which],
+                                 get_reply_str(prices->element[i]));
+            freeReplyObject(reply);
+            reply = redisCommand(context, "DEL %s_amounts@%s",
                                  bid_ask[which],
                                  get_reply_str(prices->element[i]));
             freeReplyObject(reply);
@@ -104,7 +115,7 @@ static void list()
     prices = redisCommand(context, "ZRANGE bid_prices 0 -1");
     for (total = 0, i = prices->elements - 1; i >= 0; i--) {
         double price = get_reply_double(prices->element[i]);
-        reply = redisCommand(context, "LRANGE bid_orders@%f 0 -1", price);
+        reply = redisCommand(context, "LRANGE bid_amounts@%f 0 -1", price);
         int j;
         double amount = 0;
         for (j = 0; j < reply->elements; j++) {
@@ -132,7 +143,7 @@ static void list()
     prices = redisCommand(context, "ZREVRANGE ask_prices 0 -1");
     for (total = 0, i = prices->elements - 1; i >= 0; i--) {
         double price = get_reply_double(prices->element[i]);
-        reply = redisCommand(context, "LRANGE ask_orders@%f 0 -1", price);
+        reply = redisCommand(context, "LRANGE ask_amounts@%f 0 -1", price);
         int j;
         double amount = 0;
         for (j = 0; j < reply->elements; j++) {
@@ -172,7 +183,7 @@ static void trade(double bid_price, double ask_price,
     double bid_amount, ask_amount;
 
     while (1) {
-        reply = redisCommand(context, "LINDEX bid_orders@%f 0", bid_price);
+        reply = redisCommand(context, "LINDEX bid_amounts@%f 0", bid_price);
         if (reply->type == REDIS_REPLY_NIL) {
             freeReplyObject(reply);
             reply = redisCommand(context, "ZREM bid_prices %f", bid_price);
@@ -184,7 +195,7 @@ static void trade(double bid_price, double ask_price,
             *bid_fully_matched = 0;
         }
 
-        reply = redisCommand(context, "LINDEX ask_orders@%f 0", ask_price);
+        reply = redisCommand(context, "LINDEX ask_amounts@%f 0", ask_price);
         if (reply->type == REDIS_REPLY_NIL) {
             freeReplyObject(reply);
             reply = redisCommand(context, "ZREM ask_prices %f", ask_price);
@@ -211,19 +222,23 @@ static void trade(double bid_price, double ask_price,
         }
 
         if (bid_amount == 0) {
-            reply = redisCommand(context, "LPOP bid_orders@%f", bid_price);
+            reply = redisCommand(context, "LPOP bid_amounts@%f", bid_price);
+            freeReplyObject(reply);
+            reply = redisCommand(context, "LPOP bid_users@%f", bid_price);
             freeReplyObject(reply);
         } else {
-            reply = redisCommand(context, "LSET bid_orders@%f 0 %f",
+            reply = redisCommand(context, "LSET bid_amounts@%f 0 %f",
                                  bid_price, bid_amount);
             freeReplyObject(reply);
         }
 
         if (ask_amount == 0) {
-            reply = redisCommand(context, "LPOP ask_orders@%f", ask_price);
+            reply = redisCommand(context, "LPOP ask_amounts@%f", ask_price);
+            freeReplyObject(reply);
+            reply = redisCommand(context, "LPOP ask_users@%f", ask_price);
             freeReplyObject(reply);
         } else {
-            reply = redisCommand(context, "LSET ask_orders@%f 0 %f",
+            reply = redisCommand(context, "LSET ask_amounts@%f 0 %f",
                                  ask_price, ask_amount);
             freeReplyObject(reply);
         }
@@ -304,11 +319,11 @@ static void process_command(int argc, char **argv)
 {
     if (argc == 0) return;
     if (strcmp(argv[0], "bid") == 0 || strcmp(argv[0], "ask") == 0) {
-        if (argc < 3) {
-            printf("usage: %s [PRICE] [AMOUNT]\n", argv[0]);
+        if (argc != 4) {
+            printf("usage: %s [USER] [PRICE] [AMOUNT]\n", argv[0]);
             return;
         }
-        bid_ask(argv[0], atof(argv[1]), atof(argv[2]));
+        bid_ask(argv[0], argv[1], atof(argv[2]), atof(argv[3]));
     } else if (strcmp(argv[0], "clear") == 0) {
         clear();
     } else if (strcmp(argv[0], "list") == 0) {
@@ -316,12 +331,12 @@ static void process_command(int argc, char **argv)
     } else if (strcmp(argv[0], "match") == 0) {
         match();
     } else if (strcmp(argv[0], "help") == 0) {
-        puts("bid [PRICE] [AMOUNT]      Bid AMOUNT at PRICE");
-        puts("ask [PRICE] [AMOUNT]      Ask AMOUNT at PRICE");
-        puts("clear                     Remove all data in Redis");
-        puts("list                      List all unmatched prices");
-        puts("match                     Match bids and asks");
-        puts("help                      Show this help");
+        puts("bid [USER] [PRICE] [AMOUNT]   Bid AMOUNT at PRICE");
+        puts("ask [USER] [PRICE] [AMOUNT]   Ask AMOUNT at PRICE");
+        puts("clear                         Remove all data in Redis");
+        puts("list                          List all unmatched prices");
+        puts("match                         Match bids and asks");
+        puts("help                          Show this help");
     } else {
         puts("unknown command");
     }

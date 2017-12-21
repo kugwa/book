@@ -1,431 +1,431 @@
-bid 7902.4 5
-bid 7900.1 2.5
-bid 7900 0.34
-bid 7899.1 8.1
-bid 7898 1.29
-bid 7895.2 1.98
-bid 7895.1 9.04
-bid 7892.3 0.19
-bid 7892 0.06
-bid 7890.3 8.41
-bid 7890.1 3.9
-bid 7890 1
-bid 7889 0.25
-bid 7888.9 0.03
-bid 7888.3 0.08
-bid 7888.1 17.37
-bid 7887.1 0.08
-bid 7886.9 9
-bid 7885.3 4.8
-bid 7885.2 0.01
-bid 7883.6 0.22
-bid 7883.1 0.04
-bid 7883 8
-bid 7881 0.09
-bid 7879.2 0.05
-bid 7879.1 8.02
-bid 7878.1 0.08
-bid 7878 1
-bid 7877.7 0.2
-bid 7877.4 0.02
-bid 7875.9 4.8
-bid 7874.8 0.42
-bid 7874.7 0.05
-bid 7874.5 9.62
-bid 7871.5 0.3
-bid 7871.1 0.01
-bid 7870.7 0.01
-bid 7870.5 7.56
-bid 7870.3 9
-bid 7870 0.02
-bid 7869.3 0.2
-bid 7868.6 2.5
-bid 7866 8.27
-bid 7865 5.65
-bid 7864.9 4.8
-bid 7863.5 0.1
-bid 7862.4 0.48
-bid 7862.3 8.58
-bid 7862.2 5
-bid 7861 3.49
-bid 7860 2.1
-bid 7859.9 0.1
-bid 7857.8 8.05
-bid 7857.1 10
-bid 7856.6 5
-bid 7856.5 0.13
-bid 7855.6 4.8
-bid 7855.4 0.05
-bid 7855 0
-bid 7854.9 0.05
-bid 7854.5 0.05
-bid 7854.2 0.07
-bid 7854.1 8
-bid 7853.8 0
-bid 7852.5 0
-bid 7852 1
-bid 7851.7 0.05
-bid 7851.1 5
-bid 7850.1 9.06
-bid 7850 13.6
-bid 7849 0.1
-bid 7848.7 0.1
-bid 7848.1 2
-bid 7846 13.44
-bid 7845.5 5
-bid 7845 0.5
-bid 7844.8 0.1
-bid 7844.4 0.06
-bid 7844.3 0.04
-bid 7844.2 0.04
-bid 7842.9 0.1
-bid 7842.2 8.53
-bid 7842.1 0.48
-bid 7842 0.78
-bid 7841.3 0.03
-bid 7840 5.05
-bid 7839.4 0.08
-bid 7837.8 9.05
-bid 7837.2 4.8
-bid 7837.1 0.15
-bid 7836 0.02
-bid 7835.4 0.1
-bid 7835 3.2
-bid 7833.7 8.65
-bid 7833.3 1
-bid 7831.3 0.05
-bid 7831 0.1
-bid 7830.7 0.01
-bid 7830.1 1
-bid 7830 0.29
-bid 7829 10.33
-bid 7828.9 4.8
-bid 7828.5 0.05
-bid 7826 0.02
-bid 7825.5 8.2
-bid 7825.3 2
-bid 7825 0.02
-bid 7823 1
-bid 7822.4 0.01
-bid 7821.6 0
-bid 7821.3 2
-bid 7820.9 9
-bid 7820.5 4.8
-bid 7820.3 0.78
-bid 7820.1 0.4
-bid 7820 1.94
-bid 7819.9 0.01
-bid 7818 6.47
-bid 7816.8 9.22
-bid 7816 0.02
-bid 7815.3 0.46
-bid 7815 0.04
-bid 7814.8 0.02
-bid 7812.3 7.13
-bid 7812.1 0.2
-bid 7812 1.41
-bid 7811.3 0.04
-bid 7810.3 4.8
-bid 7810 2.36
-bid 7809.1 0.1
-bid 7809 0.73
-bid 7808.4 7.7
-bid 7807.7 1.68
-bid 7807.6 0
-bid 7807 1
-bid 7806 8.52
-bid 7805.5 1.06
-bid 7805.3 0.53
-bid 7805.1 25
-bid 7805 1.62
-bid 7804.6 0.01
-bid 7804.4 4
-bid 7804.3 7.96
-bid 7803.9 0.03
-bid 7803.1 0.1
-bid 7803 0.17
-bid 7802.6 4.82
-bid 7802.3 0.23
-bid 7802.1 0
-bid 7802 1.08
-bid 7801.5 0.86
-bid 7801.2 0.08
-bid 7801 1.18
-bid 7800.5 9.06
-bid 7800.1 1.05
-bid 7800 77.4
-bid 7799.8 0.07
-bid 7799.3 0.08
-bid 7799 1.04
-bid 7798.8 0.01
-bid 7797.1 0.01
-bid 7796 0.02
-bid 7795.8 0.58
-bid 7795.7 0.03
-bid 7795.6 8
-bid 7795.2 0.04
-bid 7795 0.01
-bid 7794.9 0.03
-bid 7794.4 1.22
-bid 7794.3 1
-bid 7794.2 0.3
-bid 7794 10
-bid 7792.2 0.1
-bid 7792 0
-bid 7791.9 7.52
-bid 7791.5 16.51
-bid 7790.3 0.03
-bid 7790 4.42
-bid 7789.9 0.15
-bid 7789.5 0.01
-bid 7789.1 0.1
-bid 7788.8 0.04
-bid 7788.7 0.2
-bid 7788.5 0.01
-bid 7788.3 0.1
-bid 7788 1
-bid 7787.9 0.02
-bid 7787.6 3.01
-bid 7787.5 9.4
-bid 7787 0.01
-bid 7786.6 0.03
-bid 7786 0.05
-bid 7785 0.57
-bid 7784.6 0
-bid 7784.2 0.4
-bid 7784 0
-bid 7783.8 8.93
-bid 7783.3 1.3
-bid 7783 0.14
-bid 7782.4 0
-bid 7782.1 0.46
-bid 7782 0.01
-bid 7781 0.02
-bid 7780.1 1
-bid 7780 2.19
-bid 7779.3 10.03
-bid 7779.2 8.12
-bid 7778.5 0
-bid 7778.3 0.01
-bid 7778.2 1
-bid 7778 0.3
-bid 7777.7 2.6
-bid 7777.1 0.03
-bid 7777 5.32
-bid 7776 0.43
-bid 7775.5 0.11
-bid 7775.3 8.31
-bid 7775 0.72
-bid 7774.9 0.01
-bid 7774.4 0.01
-bid 7774 0.2
-bid 7773.5 2.01
-bid 7773.2 0.1
-bid 7773 0.21
-bid 7772.2 1.45
-bid 7771.5 7.8
-bid 7771.4 0
-bid 7770.6 0.01
-bid 7770 13.2
-bid 7769.9 0.2
-bid 7769.8 0
-bid 7769 10
-bid 7768.1 0.27
-bid 7768 0.05
-bid 7767.8 0.02
-bid 7767.7 8.23
-bid 7767.6 0.01
-bid 7767.3 0.01
-bid 7766.9 0.01
-bid 7766.6 0.04
-bid 7766 0.02
-bid 7765 1.17
-bid 7764.2 0
-bid 7763.5 9.1
-bid 7762.8 0.01
-bid 7762.7 0.15
-bid 7762 0.15
-bid 7761.5 0
-bid 7761.1 1.6
-bid 7761 0.02
-bid 7760.6 0.05
-bid 7760.4 1.95
-bid 7760 3.51
-bid 7759.3 0.01
-bid 7759.2 0.09
-bid 7759 0.01
-bid 7758.8 0.5
-bid 7758.7 18.7
-bid 7758 5.95
-bid 7757.1 0.01
-bid 7757 5
-bid 7756.9 0.02
-bid 7756 0.03
-bid 7755.9 0.46
-bid 7755.1 0.01
-bid 7755 5.1
-bid 7753.8 0.01
-bid 7753 0.03
-bid 7752 0.08
-bid 7751.8 0.01
-bid 7751 1.12
-bid 7750.7 0.03
-bid 7750.5 10.03
-bid 7750.2 0.04
-bid 7750.1 101
-bid 7750 18.84
-bid 7749 0.01
-bid 7748.4 10
-bid 7748.2 0.2
-bid 7748 0.01
-bid 7747.7 0.47
-bid 7747.3 0.01
-bid 7747 0.01
-bid 7746.7 0.03
-bid 7746.4 0.8
-bid 7746 0.38
-bid 7745.5 0.01
-bid 7745 0.08
-bid 7744.4 0.04
-bid 7744.3 0.01
-bid 7744.2 0.01
-bid 7744 0.13
-bid 7743.3 10
-bid 7742.8 0.01
-bid 7742.4 0.01
-bid 7741.3 0.04
-bid 7741.1 0.1
-bid 7741 0.02
-bid 7740 3.63
-bid 7739.5 0.01
-bid 7738.8 2
-bid 7738.4 0
-bid 7738.1 10
-bid 7737.8 0.03
-bid 7736.7 0.01
-bid 7736 3.22
-bid 7735.7 0.01
-bid 7735 1
-bid 7734.9 0.11
-bid 7734 1.32
-bid 7733.8 3.68
-bid 7733.2 0.02
-bid 7733 0.14
-bid 7732.4 0.04
-bid 7732 0.01
-bid 7731.8 0.01
-bid 7731.6 0.25
-bid 7731.1 0.01
-bid 7730.1 1
-bid 7730 1.27
-bid 7729.9 0.2
-bid 7729.1 0.01
-bid 7729 0.03
-bid 7728.5 0.01
-bid 7728.4 0.46
-bid 7728 0.01
-bid 7727.8 10
-bid 7726 0.02
-bid 7725 2.65
-bid 7724 0.01
-bid 7723.4 0.04
-bid 7723.3 0.03
-bid 7723.2 0.5
-bid 7723 0.02
-bid 7722.6 0.07
-bid 7722.2 0.04
-bid 7722.1 1
-bid 7722 10.2
-bid 7721.8 0.2
-bid 7721.6 0.01
-bid 7721.4 2.01
-bid 7721.2 0.5
-bid 7721 0.04
-bid 7720.7 2
-bid 7720 11.51
-bid 7719.3 0.01
-bid 7718.2 1
-bid 7718 0.03
-bid 7717.5 10
-bid 7717 4
-bid 7716.3 0.01
-bid 7716 0.12
-bid 7715.6 1.08
-bid 7715.3 0
-bid 7715 0.2
-bid 7714.5 0.05
-bid 7714.2 0.01
-bid 7714.1 0.55
-bid 7714 0.01
-bid 7712.5 0.1
-bid 7712 1
-bid 7711.7 1.36
-bid 7711 1.76
-bid 7710.2 1.58
-bid 7710.1 0.46
-bid 7710 5.17
-bid 7709.6 1
-bid 7709.5 0.21
-bid 7709 0.3
-bid 7708.9 4
-bid 7708.5 0.01
-bid 7708 0.05
-bid 7707.6 0.02
-bid 7707.3 0.01
-bid 7707.2 10
-bid 7707.1 0.01
-bid 7707 0.5
-bid 7706.5 0.02
-bid 7706 0.4
-bid 7705.6 1
-bid 7705.5 0.05
-bid 7705.2 0.1
-bid 7705.1 0.25
-bid 7705 3.76
-bid 7704 0.23
-bid 7703.5 0.5
-bid 7703 0.86
-bid 7702.5 0.03
-bid 7702 6.09
-bid 7701.9 1
-bid 7701.8 0.01
-bid 7701.3 0.25
-bid 7701.1 1.1
-bid 7701 2.32
-bid 7700.8 0.01
-bid 7700.6 0
-bid 7700.4 0.45
-bid 7700.1 1
-bid 7700 38.33
-bid 7699 0.28
-bid 7698.9 0.02
-bid 7696.8 10
-bid 7696.6 0.05
-bid 7696.5 0.01
-bid 7696.1 0.03
-bid 7696 0.62
-bid 7695.6 1
-bid 7695 0.07
-bid 7694.2 0.46
-bid 7694 0.03
-bid 7693.4 0.04
-bid 7693 0.01
-bid 7692.9 0.17
-bid 7692.5 0.27
-bid 7692.3 1.01
-bid 7691.5 0.01
-bid 7691.4 0.02
-bid 7690.1 0
-bid 7690 0.61
-bid 7688.7 0.01
-bid 7688.5 0.2
-bid 7687.7 0.06
-bid 7687 0.05
-bid 7686.5 10
-bid 7686 0.02
-bid 7685.8 25
-bid 7685.6 1
-bid 7685.3 0.02
-bid 7685 0.02
-bid 7684 0.01
-bid 7683.8 0.02
+bid kugwa 7902.4 5
+bid kugwa 7900.1 2.5
+bid kugwa 7900 0.34
+bid kugwa 7899.1 8.1
+bid kugwa 7898 1.29
+bid kugwa 7895.2 1.98
+bid kugwa 7895.1 9.04
+bid kugwa 7892.3 0.19
+bid kugwa 7892 0.06
+bid kugwa 7890.3 8.41
+bid kugwa 7890.1 3.9
+bid kugwa 7890 1
+bid kugwa 7889 0.25
+bid kugwa 7888.9 0.03
+bid kugwa 7888.3 0.08
+bid kugwa 7888.1 17.37
+bid kugwa 7887.1 0.08
+bid kugwa 7886.9 9
+bid kugwa 7885.3 4.8
+bid kugwa 7885.2 0.01
+bid kugwa 7883.6 0.22
+bid kugwa 7883.1 0.04
+bid kugwa 7883 8
+bid kugwa 7881 0.09
+bid kugwa 7879.2 0.05
+bid kugwa 7879.1 8.02
+bid kugwa 7878.1 0.08
+bid kugwa 7878 1
+bid kugwa 7877.7 0.2
+bid kugwa 7877.4 0.02
+bid kugwa 7875.9 4.8
+bid kugwa 7874.8 0.42
+bid kugwa 7874.7 0.05
+bid kugwa 7874.5 9.62
+bid kugwa 7871.5 0.3
+bid kugwa 7871.1 0.01
+bid kugwa 7870.7 0.01
+bid kugwa 7870.5 7.56
+bid kugwa 7870.3 9
+bid kugwa 7870 0.02
+bid kugwa 7869.3 0.2
+bid kugwa 7868.6 2.5
+bid kugwa 7866 8.27
+bid kugwa 7865 5.65
+bid kugwa 7864.9 4.8
+bid kugwa 7863.5 0.1
+bid kugwa 7862.4 0.48
+bid kugwa 7862.3 8.58
+bid kugwa 7862.2 5
+bid kugwa 7861 3.49
+bid kugwa 7860 2.1
+bid kugwa 7859.9 0.1
+bid kugwa 7857.8 8.05
+bid kugwa 7857.1 10
+bid kugwa 7856.6 5
+bid kugwa 7856.5 0.13
+bid kugwa 7855.6 4.8
+bid kugwa 7855.4 0.05
+bid kugwa 7855 0
+bid kugwa 7854.9 0.05
+bid kugwa 7854.5 0.05
+bid kugwa 7854.2 0.07
+bid kugwa 7854.1 8
+bid kugwa 7853.8 0
+bid kugwa 7852.5 0
+bid kugwa 7852 1
+bid kugwa 7851.7 0.05
+bid kugwa 7851.1 5
+bid kugwa 7850.1 9.06
+bid kugwa 7850 13.6
+bid kugwa 7849 0.1
+bid kugwa 7848.7 0.1
+bid kugwa 7848.1 2
+bid kugwa 7846 13.44
+bid kugwa 7845.5 5
+bid kugwa 7845 0.5
+bid kugwa 7844.8 0.1
+bid kugwa 7844.4 0.06
+bid kugwa 7844.3 0.04
+bid kugwa 7844.2 0.04
+bid kugwa 7842.9 0.1
+bid kugwa 7842.2 8.53
+bid kugwa 7842.1 0.48
+bid kugwa 7842 0.78
+bid kugwa 7841.3 0.03
+bid kugwa 7840 5.05
+bid kugwa 7839.4 0.08
+bid kugwa 7837.8 9.05
+bid kugwa 7837.2 4.8
+bid kugwa 7837.1 0.15
+bid kugwa 7836 0.02
+bid kugwa 7835.4 0.1
+bid kugwa 7835 3.2
+bid kugwa 7833.7 8.65
+bid kugwa 7833.3 1
+bid kugwa 7831.3 0.05
+bid kugwa 7831 0.1
+bid kugwa 7830.7 0.01
+bid kugwa 7830.1 1
+bid kugwa 7830 0.29
+bid kugwa 7829 10.33
+bid kugwa 7828.9 4.8
+bid kugwa 7828.5 0.05
+bid kugwa 7826 0.02
+bid kugwa 7825.5 8.2
+bid kugwa 7825.3 2
+bid kugwa 7825 0.02
+bid kugwa 7823 1
+bid kugwa 7822.4 0.01
+bid kugwa 7821.6 0
+bid kugwa 7821.3 2
+bid kugwa 7820.9 9
+bid kugwa 7820.5 4.8
+bid kugwa 7820.3 0.78
+bid kugwa 7820.1 0.4
+bid kugwa 7820 1.94
+bid kugwa 7819.9 0.01
+bid kugwa 7818 6.47
+bid kugwa 7816.8 9.22
+bid kugwa 7816 0.02
+bid kugwa 7815.3 0.46
+bid kugwa 7815 0.04
+bid kugwa 7814.8 0.02
+bid kugwa 7812.3 7.13
+bid kugwa 7812.1 0.2
+bid kugwa 7812 1.41
+bid kugwa 7811.3 0.04
+bid kugwa 7810.3 4.8
+bid kugwa 7810 2.36
+bid kugwa 7809.1 0.1
+bid kugwa 7809 0.73
+bid kugwa 7808.4 7.7
+bid kugwa 7807.7 1.68
+bid kugwa 7807.6 0
+bid kugwa 7807 1
+bid kugwa 7806 8.52
+bid kugwa 7805.5 1.06
+bid kugwa 7805.3 0.53
+bid kugwa 7805.1 25
+bid kugwa 7805 1.62
+bid kugwa 7804.6 0.01
+bid kugwa 7804.4 4
+bid kugwa 7804.3 7.96
+bid kugwa 7803.9 0.03
+bid kugwa 7803.1 0.1
+bid kugwa 7803 0.17
+bid kugwa 7802.6 4.82
+bid kugwa 7802.3 0.23
+bid kugwa 7802.1 0
+bid kugwa 7802 1.08
+bid kugwa 7801.5 0.86
+bid kugwa 7801.2 0.08
+bid kugwa 7801 1.18
+bid kugwa 7800.5 9.06
+bid kugwa 7800.1 1.05
+bid kugwa 7800 77.4
+bid kugwa 7799.8 0.07
+bid kugwa 7799.3 0.08
+bid kugwa 7799 1.04
+bid kugwa 7798.8 0.01
+bid kugwa 7797.1 0.01
+bid kugwa 7796 0.02
+bid kugwa 7795.8 0.58
+bid kugwa 7795.7 0.03
+bid kugwa 7795.6 8
+bid kugwa 7795.2 0.04
+bid kugwa 7795 0.01
+bid kugwa 7794.9 0.03
+bid kugwa 7794.4 1.22
+bid kugwa 7794.3 1
+bid kugwa 7794.2 0.3
+bid kugwa 7794 10
+bid kugwa 7792.2 0.1
+bid kugwa 7792 0
+bid kugwa 7791.9 7.52
+bid kugwa 7791.5 16.51
+bid kugwa 7790.3 0.03
+bid kugwa 7790 4.42
+bid kugwa 7789.9 0.15
+bid kugwa 7789.5 0.01
+bid kugwa 7789.1 0.1
+bid kugwa 7788.8 0.04
+bid kugwa 7788.7 0.2
+bid kugwa 7788.5 0.01
+bid kugwa 7788.3 0.1
+bid kugwa 7788 1
+bid kugwa 7787.9 0.02
+bid kugwa 7787.6 3.01
+bid kugwa 7787.5 9.4
+bid kugwa 7787 0.01
+bid kugwa 7786.6 0.03
+bid kugwa 7786 0.05
+bid kugwa 7785 0.57
+bid kugwa 7784.6 0
+bid kugwa 7784.2 0.4
+bid kugwa 7784 0
+bid kugwa 7783.8 8.93
+bid kugwa 7783.3 1.3
+bid kugwa 7783 0.14
+bid kugwa 7782.4 0
+bid kugwa 7782.1 0.46
+bid kugwa 7782 0.01
+bid kugwa 7781 0.02
+bid kugwa 7780.1 1
+bid kugwa 7780 2.19
+bid kugwa 7779.3 10.03
+bid kugwa 7779.2 8.12
+bid kugwa 7778.5 0
+bid kugwa 7778.3 0.01
+bid kugwa 7778.2 1
+bid kugwa 7778 0.3
+bid kugwa 7777.7 2.6
+bid kugwa 7777.1 0.03
+bid kugwa 7777 5.32
+bid kugwa 7776 0.43
+bid kugwa 7775.5 0.11
+bid kugwa 7775.3 8.31
+bid kugwa 7775 0.72
+bid kugwa 7774.9 0.01
+bid kugwa 7774.4 0.01
+bid kugwa 7774 0.2
+bid kugwa 7773.5 2.01
+bid kugwa 7773.2 0.1
+bid kugwa 7773 0.21
+bid kugwa 7772.2 1.45
+bid kugwa 7771.5 7.8
+bid kugwa 7771.4 0
+bid kugwa 7770.6 0.01
+bid kugwa 7770 13.2
+bid kugwa 7769.9 0.2
+bid kugwa 7769.8 0
+bid kugwa 7769 10
+bid kugwa 7768.1 0.27
+bid kugwa 7768 0.05
+bid kugwa 7767.8 0.02
+bid kugwa 7767.7 8.23
+bid kugwa 7767.6 0.01
+bid kugwa 7767.3 0.01
+bid kugwa 7766.9 0.01
+bid kugwa 7766.6 0.04
+bid kugwa 7766 0.02
+bid kugwa 7765 1.17
+bid kugwa 7764.2 0
+bid kugwa 7763.5 9.1
+bid kugwa 7762.8 0.01
+bid kugwa 7762.7 0.15
+bid kugwa 7762 0.15
+bid kugwa 7761.5 0
+bid kugwa 7761.1 1.6
+bid kugwa 7761 0.02
+bid kugwa 7760.6 0.05
+bid kugwa 7760.4 1.95
+bid kugwa 7760 3.51
+bid kugwa 7759.3 0.01
+bid kugwa 7759.2 0.09
+bid kugwa 7759 0.01
+bid kugwa 7758.8 0.5
+bid kugwa 7758.7 18.7
+bid kugwa 7758 5.95
+bid kugwa 7757.1 0.01
+bid kugwa 7757 5
+bid kugwa 7756.9 0.02
+bid kugwa 7756 0.03
+bid kugwa 7755.9 0.46
+bid kugwa 7755.1 0.01
+bid kugwa 7755 5.1
+bid kugwa 7753.8 0.01
+bid kugwa 7753 0.03
+bid kugwa 7752 0.08
+bid kugwa 7751.8 0.01
+bid kugwa 7751 1.12
+bid kugwa 7750.7 0.03
+bid kugwa 7750.5 10.03
+bid kugwa 7750.2 0.04
+bid kugwa 7750.1 101
+bid kugwa 7750 18.84
+bid kugwa 7749 0.01
+bid kugwa 7748.4 10
+bid kugwa 7748.2 0.2
+bid kugwa 7748 0.01
+bid kugwa 7747.7 0.47
+bid kugwa 7747.3 0.01
+bid kugwa 7747 0.01
+bid kugwa 7746.7 0.03
+bid kugwa 7746.4 0.8
+bid kugwa 7746 0.38
+bid kugwa 7745.5 0.01
+bid kugwa 7745 0.08
+bid kugwa 7744.4 0.04
+bid kugwa 7744.3 0.01
+bid kugwa 7744.2 0.01
+bid kugwa 7744 0.13
+bid kugwa 7743.3 10
+bid kugwa 7742.8 0.01
+bid kugwa 7742.4 0.01
+bid kugwa 7741.3 0.04
+bid kugwa 7741.1 0.1
+bid kugwa 7741 0.02
+bid kugwa 7740 3.63
+bid kugwa 7739.5 0.01
+bid kugwa 7738.8 2
+bid kugwa 7738.4 0
+bid kugwa 7738.1 10
+bid kugwa 7737.8 0.03
+bid kugwa 7736.7 0.01
+bid kugwa 7736 3.22
+bid kugwa 7735.7 0.01
+bid kugwa 7735 1
+bid kugwa 7734.9 0.11
+bid kugwa 7734 1.32
+bid kugwa 7733.8 3.68
+bid kugwa 7733.2 0.02
+bid kugwa 7733 0.14
+bid kugwa 7732.4 0.04
+bid kugwa 7732 0.01
+bid kugwa 7731.8 0.01
+bid kugwa 7731.6 0.25
+bid kugwa 7731.1 0.01
+bid kugwa 7730.1 1
+bid kugwa 7730 1.27
+bid kugwa 7729.9 0.2
+bid kugwa 7729.1 0.01
+bid kugwa 7729 0.03
+bid kugwa 7728.5 0.01
+bid kugwa 7728.4 0.46
+bid kugwa 7728 0.01
+bid kugwa 7727.8 10
+bid kugwa 7726 0.02
+bid kugwa 7725 2.65
+bid kugwa 7724 0.01
+bid kugwa 7723.4 0.04
+bid kugwa 7723.3 0.03
+bid kugwa 7723.2 0.5
+bid kugwa 7723 0.02
+bid kugwa 7722.6 0.07
+bid kugwa 7722.2 0.04
+bid kugwa 7722.1 1
+bid kugwa 7722 10.2
+bid kugwa 7721.8 0.2
+bid kugwa 7721.6 0.01
+bid kugwa 7721.4 2.01
+bid kugwa 7721.2 0.5
+bid kugwa 7721 0.04
+bid kugwa 7720.7 2
+bid kugwa 7720 11.51
+bid kugwa 7719.3 0.01
+bid kugwa 7718.2 1
+bid kugwa 7718 0.03
+bid kugwa 7717.5 10
+bid kugwa 7717 4
+bid kugwa 7716.3 0.01
+bid kugwa 7716 0.12
+bid kugwa 7715.6 1.08
+bid kugwa 7715.3 0
+bid kugwa 7715 0.2
+bid kugwa 7714.5 0.05
+bid kugwa 7714.2 0.01
+bid kugwa 7714.1 0.55
+bid kugwa 7714 0.01
+bid kugwa 7712.5 0.1
+bid kugwa 7712 1
+bid kugwa 7711.7 1.36
+bid kugwa 7711 1.76
+bid kugwa 7710.2 1.58
+bid kugwa 7710.1 0.46
+bid kugwa 7710 5.17
+bid kugwa 7709.6 1
+bid kugwa 7709.5 0.21
+bid kugwa 7709 0.3
+bid kugwa 7708.9 4
+bid kugwa 7708.5 0.01
+bid kugwa 7708 0.05
+bid kugwa 7707.6 0.02
+bid kugwa 7707.3 0.01
+bid kugwa 7707.2 10
+bid kugwa 7707.1 0.01
+bid kugwa 7707 0.5
+bid kugwa 7706.5 0.02
+bid kugwa 7706 0.4
+bid kugwa 7705.6 1
+bid kugwa 7705.5 0.05
+bid kugwa 7705.2 0.1
+bid kugwa 7705.1 0.25
+bid kugwa 7705 3.76
+bid kugwa 7704 0.23
+bid kugwa 7703.5 0.5
+bid kugwa 7703 0.86
+bid kugwa 7702.5 0.03
+bid kugwa 7702 6.09
+bid kugwa 7701.9 1
+bid kugwa 7701.8 0.01
+bid kugwa 7701.3 0.25
+bid kugwa 7701.1 1.1
+bid kugwa 7701 2.32
+bid kugwa 7700.8 0.01
+bid kugwa 7700.6 0
+bid kugwa 7700.4 0.45
+bid kugwa 7700.1 1
+bid kugwa 7700 38.33
+bid kugwa 7699 0.28
+bid kugwa 7698.9 0.02
+bid kugwa 7696.8 10
+bid kugwa 7696.6 0.05
+bid kugwa 7696.5 0.01
+bid kugwa 7696.1 0.03
+bid kugwa 7696 0.62
+bid kugwa 7695.6 1
+bid kugwa 7695 0.07
+bid kugwa 7694.2 0.46
+bid kugwa 7694 0.03
+bid kugwa 7693.4 0.04
+bid kugwa 7693 0.01
+bid kugwa 7692.9 0.17
+bid kugwa 7692.5 0.27
+bid kugwa 7692.3 1.01
+bid kugwa 7691.5 0.01
+bid kugwa 7691.4 0.02
+bid kugwa 7690.1 0
+bid kugwa 7690 0.61
+bid kugwa 7688.7 0.01
+bid kugwa 7688.5 0.2
+bid kugwa 7687.7 0.06
+bid kugwa 7687 0.05
+bid kugwa 7686.5 10
+bid kugwa 7686 0.02
+bid kugwa 7685.8 25
+bid kugwa 7685.6 1
+bid kugwa 7685.3 0.02
+bid kugwa 7685 0.02
+bid kugwa 7684 0.01
+bid kugwa 7683.8 0.02
