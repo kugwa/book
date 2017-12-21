@@ -77,23 +77,21 @@ static void bid_ask(const char *cmd, const char *user,
 static void clear()
 {
     redisReply *prices, *reply;
-    char *bid_ask[2] = {"bid", "ask"};
     int which, i;
+    const char *bid_ask_str[2] = {"bid", "ask"};
 
     for (which = 0; which < 2; which++) {
-        prices = redisCommand(context, "ZRANGE %s_prices 0 -1", bid_ask[which]);
+        prices = redisCommand(context, "ZRANGE %s_prices 0 -1",
+                              bid_ask_str[which]);
         for (i = 0; i < prices->elements; i++) {
-            reply = redisCommand(context, "DEL %s_users@%s",
-                                 bid_ask[which],
-                                 get_reply_str(prices->element[i]));
-            freeReplyObject(reply);
-            reply = redisCommand(context, "DEL %s_amounts@%s",
-                                 bid_ask[which],
-                                 get_reply_str(prices->element[i]));
+            const char *price = get_reply_str(prices->element[i]);
+            reply = redisCommand(context, "DEL %s_users@%s %s_amounts@%s",
+                                 bid_ask_str[which], price,
+                                 bid_ask_str[which], price);
             freeReplyObject(reply);
         }
         freeReplyObject(prices);
-        reply = redisCommand(context, "DEL %s_prices", bid_ask[which]);
+        reply = redisCommand(context, "DEL %s_prices", bid_ask_str[which]);
         freeReplyObject(reply);
     }
 }
@@ -111,61 +109,42 @@ static void list()
 
     list = json_object_new_object();
 
-    reqs = json_object_new_array();
-    prices = redisCommand(context, "ZRANGE bid_prices 0 -1");
-    for (total = 0, i = prices->elements - 1; i >= 0; i--) {
-        double price = get_reply_double(prices->element[i]);
-        reply = redisCommand(context, "LRANGE bid_amounts@%f 0 -1", price);
-        int j;
-        double amount = 0;
-        for (j = 0; j < reply->elements; j++) {
-            amount += get_reply_double(reply->element[j]);
+    int which;
+    const char *get_prices_cmd[2] = {"ZRANGE bid_prices 0 -1",
+                                     "ZREVRANGE ask_prices 0 -1"},
+               *get_amounts_cmd[2] = {"LRANGE bid_amounts@%f 0 -1",
+                                      "LRANGE ask_amounts@%f 0 -1"},
+               *json_col[2] = {"bids", "asks"};
+
+    for (which = 0; which < 2; which++) {
+        reqs = json_object_new_array();
+        prices = redisCommand(context, get_prices_cmd[which]);
+        for (total = 0, i = prices->elements - 1; i >= 0; i--) {
+            double price = get_reply_double(prices->element[i]);
+            reply = redisCommand(context, get_amounts_cmd[which], price);
+            int j;
+            double amount = 0;
+            for (j = 0; j < reply->elements; j++) {
+                amount += get_reply_double(reply->element[j]);
+            }
+            total += amount;
+
+            row = json_object_new_object();
+            snprintf(s, 20, "%zu", reply->elements);
+            json_object_object_add(row, "count", json_object_new_string(s));
+            snprintf(s, 20, "%.2lf", amount);
+            json_object_object_add(row, "amount", json_object_new_string(s));
+            snprintf(s, 20, "%.2lf", total);
+            json_object_object_add(row, "total", json_object_new_string(s));
+            snprintf(s, 20, "%.2lf", price);
+            json_object_object_add(row, "price", json_object_new_string(s));
+            json_object_array_add(reqs, row);
+
+            freeReplyObject(reply);
         }
-        total += amount;
-
-        row = json_object_new_object();
-        snprintf(s, 20, "%zu", reply->elements);
-        json_object_object_add(row, "count", json_object_new_string(s));
-        snprintf(s, 20, "%.2lf", amount);
-        json_object_object_add(row, "amount", json_object_new_string(s));
-        snprintf(s, 20, "%.2lf", total);
-        json_object_object_add(row, "total", json_object_new_string(s));
-        snprintf(s, 20, "%.2lf", price);
-        json_object_object_add(row, "price", json_object_new_string(s));
-        json_object_array_add(reqs, row);
-
-        freeReplyObject(reply);
+        json_object_object_add(list, json_col[which], reqs);
+        freeReplyObject(prices);
     }
-    json_object_object_add(list, "bids", reqs);
-    freeReplyObject(prices);
-
-    reqs = json_object_new_array();
-    prices = redisCommand(context, "ZREVRANGE ask_prices 0 -1");
-    for (total = 0, i = prices->elements - 1; i >= 0; i--) {
-        double price = get_reply_double(prices->element[i]);
-        reply = redisCommand(context, "LRANGE ask_amounts@%f 0 -1", price);
-        int j;
-        double amount = 0;
-        for (j = 0; j < reply->elements; j++) {
-            amount += get_reply_double(reply->element[j]);
-        }
-        total += amount;
-
-        row = json_object_new_object();
-        snprintf(s, 20, "%zu", reply->elements);
-        json_object_object_add(row, "count", json_object_new_string(s));
-        snprintf(s, 20, "%.2lf", amount);
-        json_object_object_add(row, "amount", json_object_new_string(s));
-        snprintf(s, 20, "%.2lf", total);
-        json_object_object_add(row, "total", json_object_new_string(s));
-        snprintf(s, 20, "%.2lf", price);
-        json_object_object_add(row, "price", json_object_new_string(s));
-        json_object_array_add(reqs, row);
-
-        freeReplyObject(reply);
-    }
-    json_object_object_add(list, "asks", reqs);
-    freeReplyObject(prices);
 
     printf("%s", json_object_to_json_string_ext(list, JSON_C_TO_STRING_PRETTY));
     json_object_put(list);
