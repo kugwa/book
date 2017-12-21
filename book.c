@@ -17,6 +17,10 @@
  *
  * ask_prices, ask_amounts@[PRICE], and ask_users@[PRICE]:
  *     The ask version of the above data structures.
+ *
+ * matched_[FIELD] (list):
+ *     A FIFO queue of matched FIELD. FIELD can be bidders, bidprices, askers,
+ *     askprices, and amounts.
  */
 
 #include <stdio.h>
@@ -32,7 +36,7 @@ static redisContext *context;
  * Convert a binary-safe string into a null-terminated string.
  *
  * reply->str: a binary-safe string
- * return: a null-terminated string
+ * return: a null-terminated string, which is available until the next call.
  */
 static const char *get_reply_str(redisReply *reply)
 {
@@ -65,9 +69,9 @@ static void bid_ask(const char *cmd, const char *user,
     redisReply *reply;
     reply = redisCommand(context, "ZADD %s_prices %f %f", cmd, price, price);
     freeReplyObject(reply);
-    reply = redisCommand(context, "rpush %s_users@%f %s", cmd, price, user);
+    reply = redisCommand(context, "RPUSH %s_users@%f %s", cmd, price, user);
     freeReplyObject(reply);
-    reply = redisCommand(context, "rpush %s_amounts@%f %f", cmd, price, amount);
+    reply = redisCommand(context, "RPUSH %s_amounts@%f %f", cmd, price, amount);
     freeReplyObject(reply);
 }
 
@@ -94,6 +98,13 @@ static void clear()
         reply = redisCommand(context, "DEL %s_prices", bid_ask_str[which]);
         freeReplyObject(reply);
     }
+    reply = redisCommand(context, "DEL "
+                                  "matched_bidders "
+                                  "matched_bidprices "
+                                  "matched_askers "
+                                  "matched_askprices "
+                                  "matched_amounts");
+    freeReplyObject(reply);
 }
 
 /*
@@ -146,20 +157,22 @@ static void list()
         freeReplyObject(prices);
     }
 
-    printf("%s", json_object_to_json_string_ext(list, JSON_C_TO_STRING_PRETTY));
+    puts(json_object_to_json_string_ext(list, JSON_C_TO_STRING_PRETTY));
     json_object_put(list);
 }
 
 /*
  * Trade the orders at given prices based on FIFO.
- * return: *bid_fully_matched == 1 if bid_price is fully matched.
+ * return: the number of trades
+ *         *bid_fully_matched == 1 if bid_price is fully matched.
  *         *ask_fully_matched == 1 if ask_price is fully matched.
  */
-static void trade(double bid_price, double ask_price,
-                  int *bid_fully_matched, int *ask_fully_matched)
+static int trade(double bid_price, double ask_price,
+                 int *bid_fully_matched, int *ask_fully_matched)
 {
     redisReply *reply;
-    double bid_amount, ask_amount;
+    double bid_amount, ask_amount, trade_amount;
+    int trades = 0;
 
     while (1) {
         reply = redisCommand(context, "LINDEX bid_amounts@%f 0", bid_price);
@@ -190,15 +203,37 @@ static void trade(double bid_price, double ask_price,
         if (*bid_fully_matched == 1 || *ask_fully_matched == 1) break;
 
         if (bid_amount > ask_amount) {
-            bid_amount -= ask_amount;
+            trade_amount = ask_amount;
             ask_amount = 0;
+            bid_amount -= trade_amount;
         } else if (ask_amount > bid_amount) {
-            ask_amount -= bid_amount;
+            trade_amount = bid_amount;
             bid_amount = 0;
+            ask_amount -= trade_amount;
         } else {
             bid_amount = 0;
             ask_amount = 0;
         }
+
+        const char *user;
+        reply = redisCommand(context, "LINDEX bid_users@%f 0", bid_price);
+        user = get_reply_str(reply);
+        freeReplyObject(reply);
+        reply = redisCommand(context, "LPUSH matched_bidders %s", user);
+        freeReplyObject(reply);
+        reply = redisCommand(context, "LINDEX ask_users@%f 0", ask_price);
+        user = get_reply_str(reply);
+        freeReplyObject(reply);
+        reply = redisCommand(context, "LPUSH matched_askers %s", user);
+        freeReplyObject(reply);
+        reply = redisCommand(context, "LPUSH matched_bidprices %f", bid_price);
+        freeReplyObject(reply);
+        reply = redisCommand(context, "LPUSH matched_askprices %f", ask_price);
+        freeReplyObject(reply);
+        reply = redisCommand(context, "LPUSH matched_amounts %f", trade_amount);
+        freeReplyObject(reply);
+
+        trades++;
 
         if (bid_amount == 0) {
             reply = redisCommand(context, "LPOP bid_amounts@%f", bid_price);
@@ -222,23 +257,26 @@ static void trade(double bid_price, double ask_price,
             freeReplyObject(reply);
         }
     }
+
+    return trades;
 }
 
 /*
- * Eliminate the overlap between bid prices and ask prices
+ * Eliminate the overlap between bid prices and ask prices.
+ * return: the number of trades
  */
-static void match()
+static int match()
 {
     /* bid prices and ask prices */
     redisReply *bid_prices = redisCommand(context, "ZRANGE bid_prices 0 -1");
     if (bid_prices->elements == 0) {
         freeReplyObject(bid_prices);
-        return;
+        return 0;
     }
     redisReply *ask_prices = redisCommand(context, "ZRANGE ask_prices 0 -1");
     if (ask_prices->elements == 0) {
         freeReplyObject(ask_prices);
-        return;
+        return 0;
     }
 
     double price;
@@ -260,17 +298,19 @@ static void match()
     if (b_lb >= bid_prices->elements || a_ub < 0) {
         freeReplyObject(bid_prices);
         freeReplyObject(ask_prices);
-        return;
+        return 0;
     }
 
     /* indices to iterate bid prices and ask prices */
     int b = b_lb, a = 0;
 
+    int trades = 0;
+
     while (1) {
         int bid_fully_matched, ask_fully_matched;
-        trade(get_reply_double(bid_prices->element[b]),
-              get_reply_double(ask_prices->element[a]),
-              &bid_fully_matched, &ask_fully_matched);
+        trades += trade(get_reply_double(bid_prices->element[b]),
+                        get_reply_double(ask_prices->element[a]),
+                        &bid_fully_matched, &ask_fully_matched);
         if (ask_fully_matched) {
             a++;
             if (a > a_ub) break;
@@ -288,6 +328,55 @@ static void match()
 
     freeReplyObject(bid_prices);
     freeReplyObject(ask_prices);
+
+    return trades;
+}
+
+void history(int start, int stop)
+{
+    redisReply *bidders, *bidprices, *askers, *askprices, *amounts;
+    json_object *list, *matched;
+    int i, num;
+    char s[20];
+
+    list = json_object_new_array();
+
+    bidders = redisCommand(context, "LRANGE matched_bidders %d %d",
+                           start, stop);
+    bidprices = redisCommand(context, "LRANGE matched_bidprices %d %d",
+                             start, stop);
+    askers = redisCommand(context, "LRANGE matched_askers %d %d",
+                          start, stop);
+    askprices = redisCommand(context, "LRANGE matched_askprices %d %d",
+                             start, stop);
+    amounts = redisCommand(context, "LRANGE matched_amounts %d %d",
+                           start, stop);
+
+    for (num = bidders->elements, i = 0; i < num; i++) {
+        matched = json_object_new_object();
+        
+        json_object_object_add(matched, "bidder",
+            json_object_new_string(get_reply_str(bidders->element[i])));
+        snprintf(s, 20, "%.2lf", get_reply_double(bidprices->element[i]));
+        json_object_object_add(matched, "bidprice", json_object_new_string(s));
+        json_object_object_add(matched, "asker",
+            json_object_new_string(get_reply_str(askers->element[i])));
+        snprintf(s, 20, "%.2lf", get_reply_double(askprices->element[i]));
+        json_object_object_add(matched, "askprice", json_object_new_string(s));
+        snprintf(s, 20, "%.2lf", get_reply_double(amounts->element[i]));
+        json_object_object_add(matched, "amount", json_object_new_string(s));
+        
+        json_object_array_add(list, matched);
+    }
+
+    freeReplyObject(bidders);
+    freeReplyObject(bidprices);
+    freeReplyObject(askers);
+    freeReplyObject(askprices);
+    freeReplyObject(amounts);
+
+    puts(json_object_to_json_string_ext(list, JSON_C_TO_STRING_PRETTY));
+    json_object_put(list);
 }
 
 /*
@@ -308,13 +397,20 @@ static void process_command(int argc, char **argv)
     } else if (strcmp(argv[0], "list") == 0) {
         list();
     } else if (strcmp(argv[0], "match") == 0) {
-        match();
+        printf("%d\n", match());
+    } else if (strcmp(argv[0], "history") == 0) {
+        if (argc != 3) {
+            puts("usage: history [START] [STOP]");
+            return;
+        }
+        history(atoi(argv[1]), atoi(argv[2]));
     } else if (strcmp(argv[0], "help") == 0) {
         puts("bid [USER] [PRICE] [AMOUNT]   Bid AMOUNT at PRICE");
         puts("ask [USER] [PRICE] [AMOUNT]   Ask AMOUNT at PRICE");
-        puts("clear                         Remove all data in Redis");
         puts("list                          List all unmatched prices");
         puts("match                         Match bids and asks");
+        puts("history [START] [STOP]        List STARTth to STOPth latest trades");
+        puts("clear                         Remove all data in Redis");
         puts("help                          Show this help");
     } else {
         puts("unknown command");
