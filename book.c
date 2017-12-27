@@ -20,12 +20,13 @@
  *
  * matched_[FIELD] (list):
  *     A FIFO queue of matched FIELD. FIELD can be bidders, bidprices, askers,
- *     askprices, and amounts.
+ *     askprices, amounts, and timestamps.
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <unistd.h>
 #include <hiredis/hiredis.h>
 #include <json-c/json.h>
@@ -103,7 +104,8 @@ static void clear()
                                   "matched_bidprices "
                                   "matched_askers "
                                   "matched_askprices "
-                                  "matched_amounts");
+                                  "matched_amounts "
+                                  "matched_timestamps");
     freeReplyObject(reply);
 }
 
@@ -232,6 +234,8 @@ static int trade(double bid_price, double ask_price,
         freeReplyObject(reply);
         reply = redisCommand(context, "LPUSH matched_amounts %f", trade_amount);
         freeReplyObject(reply);
+        reply = redisCommand(context, "LPUSH matched_timestamps %ld", time(NULL));
+        freeReplyObject(reply);
 
         trades++;
 
@@ -334,7 +338,7 @@ static int match()
 
 void history(int start, int stop)
 {
-    redisReply *bidders, *bidprices, *askers, *askprices, *amounts;
+    redisReply *bidders, *bidprices, *askers, *askprices, *amounts, *timestamps;
     json_object *list, *matched;
     int i, num;
     char s[20];
@@ -351,6 +355,8 @@ void history(int start, int stop)
                              start, stop);
     amounts = redisCommand(context, "LRANGE matched_amounts %d %d",
                            start, stop);
+    timestamps = redisCommand(context, "LRANGE matched_timestamps %d %d",
+                              start, stop);
 
     for (num = bidders->elements, i = 0; i < num; i++) {
         matched = json_object_new_object();
@@ -365,6 +371,8 @@ void history(int start, int stop)
         json_object_object_add(matched, "askprice", json_object_new_string(s));
         snprintf(s, 20, "%.2lf", get_reply_double(amounts->element[i]));
         json_object_object_add(matched, "amount", json_object_new_string(s));
+        json_object_object_add(matched, "timestamp",
+            json_object_new_string(get_reply_str(timestamps->element[i])));
         
         json_object_array_add(list, matched);
     }
@@ -374,6 +382,7 @@ void history(int start, int stop)
     freeReplyObject(askers);
     freeReplyObject(askprices);
     freeReplyObject(amounts);
+    freeReplyObject(timestamps);
 
     puts(json_object_to_json_string_ext(list, JSON_C_TO_STRING_PRETTY));
     json_object_put(list);
